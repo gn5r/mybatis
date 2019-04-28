@@ -94,14 +94,23 @@ public class Main {
 			Reader reader = Resources.getResourceAsReader("mybatis-Config.xml");
 			SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
 
-			SqlSession session = factory.openSession();
+			SqlSession session = factory.openSession();			
+			
+			Tutorial tutorial = new Tutorial();
+			tutorial.setName("shangyuan.tuolang");
+			tutorial.setEmail("st@exsample.com");
+			tutorial.setPassword("theWorld");
+			
+			session.insert("com.gn5r.TutorialMapper.insert", tutorial);
+			session.commit();
+			
 			List<Tutorial> list = session.selectList("com.gn5r.TutorialMapper.select");
-
 			for (Tutorial t : list) {
 				System.out.println("--------------------");
 				System.out.printf("ñºëO:%s Email:%s\nçÏê¨ì˙:%s\nçXêVì˙:%s\n",
 						t.getName(), t.getEmail(), t.getCreated(), t.getModified());
 			}
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();

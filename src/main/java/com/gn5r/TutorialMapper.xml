@@ -4,4 +4,8 @@
 	<select id="select" resultType="com.gn5r.Tutorial">
 		select * from tutorial;
 	</select>
+	
+	<insert id="insert">
+		insert into tutorial(name,email,password)values(#{name},#{email},#{password});
+	</insert>
 </mapper>
